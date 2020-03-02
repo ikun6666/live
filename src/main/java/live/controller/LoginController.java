@@ -34,6 +34,13 @@ public class LoginController {
 		return new ModelAndView("login");
 	}
 
+	/**
+	 * 登录
+	 * @param model
+	 * @param user
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(ModelMap model, @ModelAttribute(value = "user") UserRedis user, HttpSession session) {
 		String url = "liveList";

@@ -23,7 +23,12 @@ public class UserService {
 	public void save(UserRedis user){
 		userRedisDao.put(user.getName(), user, -1);
 	}
-	
+
+	/**
+	 * 从redis中判断登录用户密码是否正确
+	 * @param user
+	 * @return
+	 */
 	public boolean isUser(UserRedis user){
 		boolean isUser=true;
 		UserRedis userRedis=userRedisDao.get(user.getName());

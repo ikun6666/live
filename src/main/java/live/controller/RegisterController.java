@@ -25,13 +25,25 @@ public class RegisterController {
 	@Autowired
 	LiveService liveService;
 
+	/**
+	 * 跳转到注册用户界面
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/reg",method=RequestMethod.GET)
 	public ModelAndView toRegister(ModelMap model){
 		UserRedis user=new UserRedis();
 		model.addAttribute("user", user);
 		return new ModelAndView("register");
 	}
-	
+
+	/**
+	 * 注册用户
+	 * @param user
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public ModelAndView register(@ModelAttribute(value="user") UserRedis user,HttpSession session,ModelMap model){
 		userService.save(user);

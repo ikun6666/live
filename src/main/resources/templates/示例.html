@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<link rel="apple-touch-icon" href="logo.png" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Red5 - OFLADemo</title>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .dm {
+        width: 800px;
+        height: 600px;
+        background-color: blue;
+        margin: 0 auto;
+    }
+
+    .box {
+        height: 500px;
+        background-color: #000;
+        position: relative;
+        overflow: hidden;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+
+    .info {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    input[type=text] {
+        width: 500px;
+        height: 50px;
+    }
+
+    input[type=button] {
+        height: 50px;
+        width: 100px;
+
+    }
+
+    span {
+        position: absolute;
+        /* 文本强制不换行 */
+        white-space: nowrap;
+        font: bold 18px '微软雅黑';
+    }
+<!--
+body {
+    background-color:#680000;
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+.code {
+    font-family: monospace;
+    font-size: 130%;
+}
+a {
+    color: red;
+    background: white;
+    text-decoration: none;
+}
+#information {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.spiffy{display:block}
+.spiffy *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#fff}
+.spiffy1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #b60600;
+  border-right:1px solid #b60600;
+  background:#df0b00}
+.spiffy2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #8c0100;
+  border-right:1px solid #8c0100;
+  background:#e60c00}
+.spiffy3{
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #e60c00;
+  border-right:1px solid #e60c00;}
+.spiffy4{
+  border-left:1px solid #b60600;
+  border-right:1px solid #b60600}
+.spiffy5{
+  border-left:1px solid #df0b00;
+  border-right:1px solid #df0b00}
+.spiffyfg{
+    padding:1em;
+    background-color:#fff;
+}
+  -->
+</style>
+</head>
+<body>
+<script type='text/javascript' src='jwplayer.js'></script>
+<div>
+  <b class="spiffy">
+  <b class="spiffy1"><b></b></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy5"></b></b>
+  
+<div class="spiffyfg">
+
+<p>This page demonstrates the use of <a href="http://www.longtailvideo.com/jw-player/" target="_blank">JWPlayer</a> to stream media from the OFLADemo application. If you want the classic version, click <a href="/demos/ofla_demo.html">here</a></p>
+
+<center>
+<b>RTMP</b>
+
+    <div class="dm">
+        <div class="box">
+            <!--<video src="m.mp4" controls></video>-->
+            <div id='mediaspace'>This text will be replaced</div>
+            <script type='text/javascript'>
+                jwplayer('mediaspace').setup({
+                    'flashplayer': 'player.swf',
+                    'file': 'live',
+                    'streamer': 'rtmp://127.0.0.1/live',
+                    'controlbar': 'bottom',
+                    'width': '720',
+                    'height': '480'
+                });
+            </script>
+        </div>
+        <div class="info">
+            <input type="text" maxlength="30" id="txt">
+            <input type="button" value="发射" id="emit">
+        </div>
+    </div>
+
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+        // 0. 用一个数组保存一组颜色值
+        var colors = ['red', 'green', 'yellow', '#fff', 'pink', 'blue'];
+        // 1. 给发射按钮注册点击事件
+        $('#emit').click(function () {
+            // 2. 获取文本框的内容
+            var v = $('#txt').val();
+            // 3. 创建span标签，并设置内容，设置样式，最后追加到类名为box的div中
+            var $span = $('<span></span>');
+            $span.text(v)
+                .css({
+                    left: $('.box').width(),
+                    top: parseInt(Math.random() * $('.box').height()),
+                    color: colors[parseInt(Math.random() * colors.length)]
+                }).appendTo('.box');
+            // 4. 让当前的span产生动画 left 为-span的宽度
+            $span.animate({
+                left: -1 * $span.width()
+            }, 6000, 'linear', function () {
+                // 当动画结束后，删除该元素
+                $span.remove();
+            })
+        });
+    </script>
+<br />
+
+</center>
+
+<br />
+</div>
+
+  <b class="spiffy">
+  <b class="spiffy5"></b>
+  <b class="spiffy4"></b>
+  <b class="spiffy3"></b>
+  <b class="spiffy2"><b></b></b>
+  <b class="spiffy1"><b></b></b></b>
+</div>
+</body>
+</html>
